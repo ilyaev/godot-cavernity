@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3fbm8dr16dy7"]
+
+[ext_resource type="PackedScene" uid="uid://c6dt7xfftwsy8" path="res://barrel.blend" id="1_dst6o"]
+[ext_resource type="Material" uid="uid://c7s5viwx21085" path="res://palleter.tres" id="2_njig0"]
+
+[node name="barrel" instance=ExtResource("1_dst6o")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_njig0")

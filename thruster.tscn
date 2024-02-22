@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8mqwlr3x4fwk"]
+
+[ext_resource type="Shader" path="res://thruster.gdshader" id="1_113ya"]
+[ext_resource type="Script" path="res://thruster.gd" id="1_muecd"]
+[ext_resource type="Gradient" uid="uid://dm4oqrq5lpl0o" path="res://gradient_blue.tres" id="3_mpsct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4e3hb"]
+render_priority = 0
+shader = ExtResource("1_113ya")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5cjuv"]
+material = SubResource("ShaderMaterial_4e3hb")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_62o0m"]
+_data = [Vector2(0.011811, 0.770715), 0.0, 0.0, 0, 0, Vector2(0.98622, 0.508985), -0.968022, 0.0, 0, 0]
+point_count = 2
+
+[node name="Thruster" type="Node3D"]
+script = ExtResource("1_muecd")
+
+[node name="particles" type="CPUParticles3D" parent="."]
+amount = 32
+lifetime = 0.5
+speed_scale = 3.0
+randomness = 0.45
+lifetime_randomness = 0.86
+mesh = SubResource("PlaneMesh_5cjuv")
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.1
+emission_ring_radius = 0.3
+emission_ring_inner_radius = 0.0
+linear_accel_min = -8.79
+linear_accel_max = 21.25
+radial_accel_min = -5.0
+scale_amount_curve = SubResource("Curve_62o0m")
+color_ramp = ExtResource("3_mpsct")
+hue_variation_min = -0.65

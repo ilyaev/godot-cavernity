@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn72whyf7t4cr"]
+
+[ext_resource type="PackedScene" uid="uid://bideutv3t1mwc" path="res://ufo3.blend" id="1_oli2b"]
+[ext_resource type="Material" uid="uid://c7s5viwx21085" path="res://palleter.tres" id="2_kn7nr"]
+
+[node name="ufo3" instance=ExtResource("1_oli2b")]
+
+[node name="Circle" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_kn7nr")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.135525, 0.990774, 0, -0.990774, 0.135525, 0.122465, 2.60412, 0.275483)
+visible = false
+light_energy = 3.762
+spot_range = 2.72451
+spot_angle = 47.1454

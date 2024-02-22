@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvfl3g8uomyvt"]
+
+[ext_resource type="Script" path="res://turret.gd" id="1_nwmvc"]
+[ext_resource type="PackedScene" uid="uid://c3fbm8dr16dy7" path="res://barrel.tscn" id="2_ho73h"]
+
+[sub_resource type="Animation" id="Animation_ithdi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0yhcb"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 1, 2.08165e-12), Vector3(2.08165e-12, 0.9989, 2.08165e-12), Vector3(2.08165e-12, 1.00213, 2.08165e-12), Vector3(2.08165e-12, 1.00391, 2.08165e-12), Vector3(2.08165e-12, 0.980844, 2.08165e-12), Vector3(2.08165e-12, 1.00288, 2.08165e-12), Vector3(2.08165e-12, 1.11746, 2.08165e-12), Vector3(2.08165e-12, 0.811907, 2.08165e-12), Vector3(2.08165e-12, 0.188093, 2.08165e-12), Vector3(2.08165e-12, -0.117462, 2.08165e-12), Vector3(2.08165e-12, -0.00288439, 2.08165e-12), Vector3(2.08165e-12, 0.0191556, 2.08165e-12), Vector3(2.08165e-12, -0.00390625, 2.08165e-12), Vector3(2.08165e-12, -0.00212765, 2.08165e-12), Vector3(2.08165e-12, 0.00109953, 2.08165e-12), Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_htp0n"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("barrel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.28881e-15, 0.00109952, 2.28881e-15), Vector3(-4.42895e-15, -0.00212762, -4.42895e-15), Vector3(-8.13144e-15, -0.00390625, -8.13144e-15), Vector3(3.98753e-14, 0.0191556, 3.98753e-14), Vector3(-6.00424e-15, -0.00288437, -6.00424e-15), Vector3(-2.44514e-13, -0.117462, -2.44514e-13), Vector3(3.91544e-13, 0.188093, 3.91544e-13), Vector3(1.6901e-12, 0.811907, 1.6901e-12), Vector3(2.32616e-12, 1.11746, 2.32616e-12), Vector3(2.08765e-12, 1.00288, 2.08765e-12), Vector3(2.04177e-12, 0.980844, 2.04177e-12), Vector3(2.08978e-12, 1.00391, 2.08978e-12), Vector3(2.08608e-12, 1.00213, 2.08608e-12), Vector3(2.07936e-12, 0.9989, 2.07936e-12), Vector3(2.08165e-12, 1, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vm3bb"]
+_data = {
+"RESET": SubResource("Animation_ithdi"),
+"hide": SubResource("Animation_0yhcb"),
+"show": SubResource("Animation_htp0n")
+}
+
+[node name="Turret" type="Node3D"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("1_nwmvc")
+
+[node name="barrel" parent="." instance=ExtResource("2_ho73h")]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vm3bb")
+}

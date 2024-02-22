@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://trbvsuittesl"]
+
+[ext_resource type="Script" path="res://CaveMesh.gd" id="1_y2kqs"]
+[ext_resource type="FastNoiseLite" uid="uid://bekum1qmr0iin" path="res://noise_1.tres" id="2_mcjcn"]
+[ext_resource type="FastNoiseLite" uid="uid://va5kuf7j6udj" path="res://noise_2.tres" id="3_n7gsb"]
+
+[node name="CaveMesh" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -4, 2.08165e-12)
+script = ExtResource("1_y2kqs")
+density = 20
+noise_multiplier = 5.0
+noise2_multiplier = 2.08165e-12
+noise = ExtResource("2_mcjcn")
+noise2 = ExtResource("3_n7gsb")

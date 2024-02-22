@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://pfowdi5un1t6"]
+
+[ext_resource type="Script" path="res://Ship.gd" id="1_345ee"]
+[ext_resource type="PackedScene" uid="uid://b8mqwlr3x4fwk" path="res://thruster.tscn" id="2_crhjp"]
+[ext_resource type="PackedScene" uid="uid://bn72whyf7t4cr" path="res://ufo_3.tscn" id="4_cbbrh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ca3wp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jdh4u"]
+radius = 0.37329
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81ygf"]
+size = Vector3(1.65137, 0.272522, 1.66882)
+
+[node name="Ship" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+axis_lock_linear_x = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_ca3wp")
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_345ee")
+
+[node name="ufo" parent="." instance=ExtResource("4_cbbrh")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0284587, 0.223305, 0)
+shape = SubResource("SphereShape3D_jdh4u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0311105, 0.126391, -0.0108032)
+shape = SubResource("BoxShape3D_81ygf")
+
+[node name="Thruster" parent="." instance=ExtResource("2_crhjp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.112603, 0)

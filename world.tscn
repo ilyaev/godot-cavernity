@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds5yic5cjaq6i"]
+
+[ext_resource type="PackedScene" uid="uid://bs0llsylwgaak" path="res://cave.tscn" id="1_18x20"]
+[ext_resource type="Script" path="res://world.gd" id="1_cqpjs"]
+[ext_resource type="PackedScene" uid="uid://trbvsuittesl" path="res://CaveMesh.tscn" id="2_bqfv2"]
+[ext_resource type="Script" path="res://caves.gd" id="2_vmicq"]
+[ext_resource type="PackedScene" uid="uid://pfowdi5un1t6" path="res://ship.tscn" id="3_22fax"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8gubx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6vxjx"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_aw7sq"]
+sky_material = SubResource("ProceduralSkyMaterial_6vxjx")
+
+[sub_resource type="Environment" id="Environment_mqs1o"]
+background_mode = 2
+sky = SubResource("Sky_aw7sq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Environment" id="Environment_upt7t"]
+background_mode = 1
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_cqpjs")
+
+[node name="CaveContainer" type="Node3D" parent="."]
+
+[node name="CaveMeshBottom" parent="CaveContainer" instance=ExtResource("2_bqfv2")]
+unique_name_in_owner = true
+is_primary = true
+noise_multiplier = 4.0
+noise2_multiplier = 2.0
+
+[node name="CaveMeshTop" parent="CaveContainer" instance=ExtResource("2_bqfv2")]
+unique_name_in_owner = true
+transform = Transform3D(-1, -8.74228e-08, 3.48787e-16, 8.74228e-08, -1, -3.48787e-16, 3.48787e-16, -3.48787e-16, 1, -5, 6.282, 2.08165e-12)
+offset = 345
+direction = -1
+
+[node name="Beacon" type="MeshInstance3D" parent="CaveContainer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, -0.5)
+visible = false
+mesh = SubResource("BoxMesh_8gubx")
+
+[node name="Beacon2" type="MeshInstance3D" parent="CaveContainer"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, -0.5)
+visible = false
+mesh = SubResource("BoxMesh_8gubx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mqs1o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0.407614, -0.900991, -0.148544, 0.289569, -0.0267395, 0.956783, 12.2003, 0.407152, -0.403713)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.66043, 1.13329, 6.61045)
+environment = SubResource("Environment_upt7t")
+current = true
+size = 9.0
+
+[node name="Ship" parent="." instance=ExtResource("3_22fax")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, -0.5)
+
+[node name="Background" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.59016, 2.51036, -0.688863)
+
+[node name="BGCavesTop" type="Node3D" parent="Background"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12778, -0.156961)
+script = ExtResource("2_vmicq")
+
+[node name="central" parent="Background/BGCavesTop" instance=ExtResource("1_18x20")]
+skeleton = NodePath("../../..")
+
+[node name="right" parent="Background/BGCavesTop" instance=ExtResource("1_18x20")]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9.99, 2.08165e-12, 2.08165e-12)
+instance_shader_parameters/offset = 10.0
+skeleton = NodePath("../../..")
+offset = 10.0
+
+[node name="left" parent="Background/BGCavesTop" instance=ExtResource("1_18x20")]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10, 2.08165e-12, 2.08165e-12)
+instance_shader_parameters/offset = -10.0
+skeleton = NodePath("../../..")
+offset = -10.0
+
+[node name="BGCavesBottom" type="Node3D" parent="Background"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 8.74228e-08, 3.48787e-16, -8.74228e-08, -1, -3.48787e-16, 3.48787e-16, -3.48787e-16, 1, -4.81061, -2.19381, -0.156961)
+script = ExtResource("2_vmicq")
+direction = -1.0
+
+[node name="central" parent="Background/BGCavesBottom" instance=ExtResource("1_18x20")]
+skeleton = NodePath("../../..")
+
+[node name="right" parent="Background/BGCavesBottom" instance=ExtResource("1_18x20")]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, 2.08165e-12, 2.08165e-12)
+instance_shader_parameters/offset = 10.0
+skeleton = NodePath("../../..")
+offset = 10.0
+
+[node name="left" parent="Background/BGCavesBottom" instance=ExtResource("1_18x20")]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, -9.99, 2.08165e-12, 2.08165e-12)
+instance_shader_parameters/offset = -10.0
+skeleton = NodePath("../../..")
+offset = -10.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71313, 0, 12.4972)
+light_energy = 16.0
+spot_range = 335.729
+spot_angle = 101.36

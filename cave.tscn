@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bs0llsylwgaak"]
+
+[ext_resource type="Shader" path="res://plane.gdshader" id="1_orwii"]
+[ext_resource type="Script" path="res://cave.gd" id="2_ksox1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_noy2n"]
+frequency = 0.0475
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nark3"]
+width = 2048
+height = 16
+seamless = true
+noise = SubResource("FastNoiseLite_noy2n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kln80"]
+render_priority = 0
+shader = ExtResource("1_orwii")
+shader_parameter/noise = SubResource("NoiseTexture2D_nark3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rmb3v"]
+material = SubResource("ShaderMaterial_kln80")
+size = Vector2(10, 2)
+subdivide_width = 30
+
+[node name="Cave" type="MeshInstance3D"]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+instance_shader_parameters/offset = 0.0
+mesh = SubResource("PlaneMesh_rmb3v")
+script = ExtResource("2_ksox1")

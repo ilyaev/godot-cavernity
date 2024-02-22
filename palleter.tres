@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c7s5viwx21085"]
+
+[ext_resource type="Texture2D" uid="uid://c2shayjitk8mr" path="res://pallete.png" id="1_mgcwh"]
+
+[resource]
+shading_mode = 2
+albedo_texture = ExtResource("1_mgcwh")
+emission = Color(0.756863, 0.133333, 0, 1)
+emission_energy_multiplier = 0.1
+rim_enabled = true
+rim = 0.23
+rim_tint = 0.72
+refraction_scale = -0.25
+grow_amount = -0.36

@@ -1,0 +1,11 @@
+[gd_resource type="FastNoiseLite" format=3 uid="uid://bekum1qmr0iin"]
+
+[resource]
+seed = 9
+frequency = 0.004
+fractal_type = 3
+cellular_distance_function = 3
+cellular_return_type = 5
+domain_warp_type = 2
+domain_warp_amplitude = 90.0
+domain_warp_fractal_type = 2

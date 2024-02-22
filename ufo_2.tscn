@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://djnxepe3gxeul"]
+
+[ext_resource type="PackedScene" uid="uid://dw4acx78bmkb4" path="res://ufo2.blend" id="1_lipu8"]
+[ext_resource type="Material" uid="uid://c7s5viwx21085" path="res://palleter.tres" id="2_kfl1x"]
+
+[node name="ufo2" instance=ExtResource("1_lipu8")]
+
+[node name="Circle" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_kfl1x")

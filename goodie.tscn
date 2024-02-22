@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1ckrxq805rtj"]
+
+[ext_resource type="Script" path="res://goodie.gd" id="1_xrdlj"]
+[ext_resource type="Shader" path="res://pill.gdshader" id="2_kmwbk"]
+[ext_resource type="PackedScene" uid="uid://eogj6nc0ko3g" path="res://coinGold.glb" id="3_e7jna"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7v5hi"]
+render_priority = 0
+shader = ExtResource("2_kmwbk")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uxq8j"]
+material = SubResource("ShaderMaterial_7v5hi")
+radius = 0.1
+height = 0.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_suin4"]
+radius = 0.1
+height = 0.4
+
+[node name="Goodie" type="Node3D"]
+script = ExtResource("1_xrdlj")
+
+[node name="cage" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_uxq8j")
+
+[node name="Area3D" type="Area3D" parent="cage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cage/Area3D"]
+shape = SubResource("CapsuleShape3D_suin4")
+
+[node name="coinGold2" parent="." instance=ExtResource("3_e7jna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.202942, 0)
+
+[connection signal="body_entered" from="cage/Area3D" to="." method="_on_area_3d_body_entered"]
